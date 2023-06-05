@@ -20,7 +20,7 @@ res = ast.literal_eval(response.replace('\n','\\n'))
 st.markdown(res["mails"][0]['mail'])
 
 
-df = pd.DataFrame.from_dict(res["mails"].replace('\\n','\n'))
+df = (pd.DataFrame.from_dict(res["mails"]).replace('\\n','\n'))
 st.dataframe(df)
 
 st.download_button(
