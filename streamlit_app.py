@@ -20,13 +20,10 @@ res = ast.literal_eval(response.replace('\n','\\n'))
 st.markdown(res["mails"][0]['mail'])
 
 
-t = pd.ExcelWriter('test.xlsx')
 df = pd.DataFrame.from_dict(res["mails"])
 st.dataframe(df)
-  # Adjust the path as per your repository structure
-csv = df.to_excel(t)
+
 st.download_button(
     label="Download data as Excel",
-    data=csv,
-    file_name='mail.xlsx',
+    data=df.to_csv()
 )
