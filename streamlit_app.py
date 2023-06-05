@@ -25,5 +25,5 @@ st.dataframe(df)
 
 st.download_button(
     label="Download data as Excel",
-    data=df.to_csv(index = false)
+    data=df.to_csv(index = False)
 )
