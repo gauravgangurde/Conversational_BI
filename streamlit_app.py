@@ -19,8 +19,7 @@ response = """{ "mails": [ { "name": "Agent 1", "performance category": "Consist
 res = ast.literal_eval(response.replace('\n','\\n'))
 st.markdown(res["mails"][0]['mail'])
 
-generate = st.button('Generate')
 
-with generate:
+if st.button('Generate'):
 	df = pd.DataFrame.from_dict(res["mails"])
 	df.to_excel('test.xlsx')
