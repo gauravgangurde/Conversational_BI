@@ -24,7 +24,7 @@ st.markdown(res["mails"][0]['mail'])
 df = pd.DataFrame.from_dict(res["mails"])
 st.dataframe(df)
   # Adjust the path as per your repository structure
-csv = df.to_excel(encode='utf-8', index=False)
+csv = df.to_excel()
 st.download_button(
     label="Download data as Excel",
     data=csv,
