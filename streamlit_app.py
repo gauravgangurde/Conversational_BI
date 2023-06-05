@@ -22,4 +22,5 @@ st.markdown(res["mails"][0]['mail'])
 
 if st.button('Generate'):
 	df = pd.DataFrame.from_dict(res["mails"])
+	st.dataframe(df)
 	df.to_excel('test.xlsx')
