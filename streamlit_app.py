@@ -25,6 +25,6 @@ if st.button('Generate'):
 	df = pd.DataFrame.from_dict(res["mails"])
 	st.dataframe(df)
 	if file is not None:
-    		file_path = "test.csv"  # Adjust the path as per your repository structure
+    		file_path = file.name  # Adjust the path as per your repository structure
     		df.to_csv(file_path, index=False, encoding='utf-8', sep = '|')
     		st.success(f"CSV file saved at {file_path}")
