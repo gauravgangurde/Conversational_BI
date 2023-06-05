@@ -6,66 +6,14 @@ import openai
 import json
 
 image = Image.open('exl.png')
-
-
-openai.api_key = st.secrets["chat_gpt_key"]
-
-df = pd.read_csv('performance.csv')
-
-def openai_response(query):
-	response = openai.ChatCompletion.create(
-	model="gpt-3.5-turbo",
-	messages = [
-		{"role":"system", "content":"You are helpful assistant."},
-		{"role":"user","content": query}
-	],
-	temperature = 0.6,
-	)
-	return response.choices[0]['message']['content']  
-	
-def row_converter(row, listy):
-	#convert pandas row to a dictionary
-	#requires a list of columns and a row as a tuple
-	count = 1
-	pictionary = {}
-	pictionary['Index'] = row[0]
-	for item in listy:
-		pictionary[item] = row[count]
-		count += 1
-	print(pictionary)
-	return pictionary
 	
 with st.sidebar:
 	st.image(image, width = 150)
 	st.header('Generative AI')
 
 
-st.header("Personalized communication ")
+st.header("Test")
 
-with st.form("my_form"):
-	name = st.selectbox('Please select name',df['performance'])
-	df = df[df['performance']==name]
-	intent_of_mail = st.text_input(label ="Intent of mail" , placeholder = 'Intent')
-	category = df[df.name == name]['performance'].to_string(index=False)
-	target = df[df.name == name]['target'].to_string(index=False)
-	latest_performance = df[df.name == name]['latest_month_performance'].to_string(index=False)
-	
-	# Every form must have a submit button.
-	submitted = st.form_submit_button("Submit")
-	if submitted:
-		data = []
-		listy = df.columns
-		for row in df.itertuples():
-			data.append(row_converter(row, listy))
-		st.markdown(data)
-		response = openai_response(f"""Your task is to write mail to agents in {category} performance category about their performance data delimited by three backticks,
-					generate new mail for each agent with keeping content of body similar,
-					giving feedback, suggesting improvment areas, and it should include 2 sales improvement article or training link references based on performance category
-					Please keep the mail concise and sign it as 'Manager'
-					Provide output in JSON format only with following keys:
-					name, performance category,mail
-					data: ```{data} ``` """)
-		st.write()
-		st.markdown(response)
-		st.write()
-		st.markdown(list(json.loads(response))['mails'])
+response = """{ "mails": [ { "name": "Agent 1", "performance category": "Consistent achiever", "mail": "Dear Agent 1,\n\nI am writing to provide you with feedback on your latest performance data. It is great to see that you have consistently achieved your targets and even exceeded them last month. Keep up the good work!\n\nHowever, I would suggest that you focus on improving your communication skills with clients. This can help you build better relationships and increase sales.\n\nHere are two articles that can help you improve your sales skills:\n1. https://hbr.org/2017/06/the-best-salespeople-are-deeply-empathetic\n2. https://www.salesforce.com/blog/2017/01/5-sales-tips-from-people-who-hate-sales.html\n\nThank you for your hard work.\n\nBest regards,\nManager" }, { "name": "Agent 5", "performance category": "Consistent achiever", "mail": "Dear Agent 5,\n\nI am writing to provide you with feedback on your latest performance data. It is great to see that you have consistently achieved your targets and even exceeded them last month. Keep up the good work!\n\nHowever, I would suggest that you focus on improving your time management skills. This can help you increase your productivity and achieve even better results.\n\nHere are two training links that can help you improve your sales skills:\n1. https://www.udemy.com/course/time-management-salespeople/\n2. https://www.carew.com/time-management-sales-training/\n\nThank you for your hard work.\n\nBest regards,\nManager" }, { "name": "Agent 9", "performance category": "Consistent achiever", "mail": "Dear Agent 9,\n\nI am writing to provide you with feedback on your latest performance data. It is great to see that you have consistently achieved your targets and even exceeded them last month. Keep up the good work!\n\nHowever, I would suggest that you focus on improving your product knowledge. This can help you better understand your clients' needs and offer them more suitable products.\n\nHere are two articles that can help you improve your sales skills:\n1. https://www.salesforce.com/blog/2015/04/7-tips-to-boost-your-product-knowledge.html\n2. https://www.business.com/articles/5-ways-to-improve-your-product-knowledge-for-sales/\n\nThank you for your hard work.\n\nBest regards,\nManager" } ] }"""
+
+st.markdown(response)
