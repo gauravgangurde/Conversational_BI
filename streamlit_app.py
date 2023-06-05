@@ -24,4 +24,4 @@ if st.button('Generate'):
 	df = pd.DataFrame.from_dict(res["mails"])
 	st.dataframe(df)
   # Adjust the path as per your repository structure
-	df.to_csv("/test.csv", index=False, sep = '|')
+	df.to_csv("test.csv", index=False, sep = '|')
