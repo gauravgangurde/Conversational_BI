@@ -20,8 +20,14 @@ res = ast.literal_eval(response.replace('\n','\\n'))
 st.markdown(res["mails"][0]['mail'])
 
 
-if st.button('Generate'):
-	df = pd.DataFrame.from_dict(res["mails"])
-	st.dataframe(df)
+
+df = pd.DataFrame.from_dict(res["mails"])
+st.dataframe(df)
   # Adjust the path as per your repository structure
-	df.to_csv("/test.csv", index=False, sep = '|')
+csv = df.to_csv(index=False, sep = '|')
+st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name='mail.csv',
+    mime='text/csv',
+)
