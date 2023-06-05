@@ -21,6 +21,10 @@ st.markdown(res["mails"][0]['mail'])
 
 
 if st.button('Generate'):
+	file = st.file_uploader("Upload CSV file", type=["csv"])
 	df = pd.DataFrame.from_dict(res["mails"])
 	st.dataframe(df)
-	df.to_excel(r'test.xlsx')
+	if file is not None:
+    		file_path = "test.csv"  # Adjust the path as per your repository structure
+    		df.to_csv(file_path, index=False, encoding='utf-8', sep = '|')
+    		st.success(f"CSV file saved at {file_path}")
