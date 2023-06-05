@@ -20,7 +20,7 @@ res = ast.literal_eval(response.replace('\n','\\n'))
 st.markdown(res["mails"][0]['mail'])
 
 
-t = pd.ExcelWriter()
+t = pd.ExcelWriter('test_xlsx')
 df = pd.DataFrame.from_dict(res["mails"])
 st.dataframe(df)
   # Adjust the path as per your repository structure
