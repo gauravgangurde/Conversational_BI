@@ -21,7 +21,7 @@ for i in res.values():
 	st.markdown(i)
 st.markdown(res["mails"][0]['mail'])
 
-for i in res.keys()::
+for i in res.keys():
 	df = (pd.DataFrame.from_dict(res[i]).replace({'$$!': '\n'}, regex=True))
 	st.dataframe(df)
 
