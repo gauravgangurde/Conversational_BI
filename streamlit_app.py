@@ -34,5 +34,5 @@ st.markdown(res["mails"][0]['mail'])
 for i in res.keys():
 	df = (pd.DataFrame.from_dict(res[i]))
 	dicts_to_csv(res[i], 'mails_data.csv')
-	st.dataframe(pd.read_csv('mails_data', sep = '|'))
+	st.dataframe(pd.read_csv('mails_data.csv', sep = '|'))
 
