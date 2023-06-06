@@ -19,13 +19,9 @@ response = """{ "mails": [ { "name": "Agent 1", "performance category": "Consist
 res = ast.literal_eval(response.replace('\n','$$!'))
 for i in res.values():
 	st.markdown(i)
-#st.markdown(res["mails"][0]['mail'])
-#
-#
-#df = (pd.DataFrame.from_dict(res["mails"]).replace({'$$!': '\n'}, regex=True))
-#st.dataframe(df)
-#
-#st.download_button(
-#    label="Download data as Excel",
-#    data=df.to_csv(index = False)
-#)
+st.markdown(res["mails"][0]['mail'])
+
+for i in res.keys()::
+	df = (pd.DataFrame.from_dict(res[i]).replace({'$$!': '\n'}, regex=True))
+	st.dataframe(df)
+
