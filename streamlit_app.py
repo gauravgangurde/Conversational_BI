@@ -28,7 +28,9 @@ def tab3():
 
 def next_tab_button(next_tab):
     col1, col2, col3 = st.columns(3)
-    col2.button("Next Tab", key=next_tab)
+    if col2.button("Next Tab", key=next_tab):
+        next_tab_index = (tabs.index(next_tab) + 1) % len(tabs)
+        st.experimental_set_query_params(tab=tabs[next_tab_index])
 
 if __name__ == "__main__":
     main()
