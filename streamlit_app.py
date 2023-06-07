@@ -1,7 +1,7 @@
 import streamlit as st
-
+tabs = ["Tab 1", "Tab 2", "Tab 3"]
 def main():
-    tabs = ["Tab 1", "Tab 2", "Tab 3"]
+    
     current_tab = st.sidebar.radio("Select a tab", tabs)
     
     if current_tab == "Tab 1":
