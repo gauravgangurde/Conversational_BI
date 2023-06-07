@@ -27,7 +27,7 @@ def tab3():
     next_tab_button("Tab 1")
 
 def next_tab_button(next_tab):
-    col1, col2, col3 = st.beta_columns(3)
+    col1, col2, col3 = st.columns(3)
     col2.button("Next Tab", key=next_tab)
 
 if __name__ == "__main__":
