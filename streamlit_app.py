@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Create the tab objects
-tab1, tab2, tab3 = st.columns(3)
+tab1, tab2, tab3 = st.tabs(['Analysis','Report', 'Validation'])
 
 # Define a button to switch to the next tab
 if tab1.button("Next Tab", key = 'a'):
