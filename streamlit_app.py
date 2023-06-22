@@ -7,7 +7,7 @@ from langchain.chains import RetrievalQA
 from langchain.llms import OpenAI
 import os
 
-os.environ["OPENAI_API_KEY"] = st.secrets["open_ai_api_key"]
+os.environ["OPENAI_API_KEY"] = st.secrets["chat_gpt_key"]
 
 st.title('CSV Question and answer ChatBot')
 
